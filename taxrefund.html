@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+<!--
+  * Please see the included README.md file for license terms and conditions.
+  -->
+<head>
+    <title>Tax Refund</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+    <!-- see http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/quick-tip-dont-forget-the-viewport-meta-tag -->
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=no">
+    <style>
+        /* following two viewport lines are equivalent to meta viewport statement above, needed for Windows */
+        /* see http://www.quirksmode.org/blog/archives/2014/05/html5_dev_conf.html and http://dev.w3.org/csswg/css-device-adapt/ */
+        @-ms-viewport { width: 100vw ; min-zoom:100% ; zoom: 100% ; }  @viewport { width: 100vw ; min-zoom: 100% zoom: 100% ; }
+        @-ms-viewport { user-zoom: fixed ; min-zoom: 100% ; }           @viewport { user-zoom: fixed ; min-zoom: 100% ; }
+    </style>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    
+
+    <!-- Uncomment the following scripts if you convert your "Standard HTML5" project into a "Cordova" project. -->
+    <!-- <script src="cordova.js"></script> -->          <!-- phantom library, needed for Cordova api calls, added during build -->
+    <!-- <script src="js/app.js"></script> -->           <!-- recommended location of your JavaScript code relative to other JS files -->
+    <!-- <script src="xdk/init-dev.js"></script> -->     <!-- normalizes device and document ready events, see README for details -->
+</head>
+
+<body>
+
+        
+             <div class="form-input-box container">
+                    <div class="form-content row">
+                <h2 align=center>Tax Refund Calculator</h2><br/>
+                    
+                     <form  name="refundcalc" method="post" action="sendfrmfortaxrefund.php" enctype="multipart/form-data">
+                     
+                     <!-- Uncomment the following scripts if you convert your "Standard HTML5" project into a "Cordova" project. -->
+
+                     
+                     <fieldset class=" sprint3 col-md-12 col-sm-12 col-xs-11">
+                     <legend class="sprint4">Personal Details</legend>
+                     <div class="form-group col-xs-12 col-sm-12">
+                     <label>First Name</label>
+                     <input class="sprint col-md-12 col-sm-12 col-xs-12" type='text' name='first_name' placeholder='Enter first name' size=30 maxlenght=25>
+                     </div>
+                     <br/>
+                            
+
+                     
+                     <div class="form-group col-xs-12 col-sm-12">
+                     <label>Last Name</label>
+                     <input class="sprint col-md-12 col-sm-12 col-xs-12" type='text' name='last_name' placeholder='Enter last name' size=30 maxlenght=25>
+                     </div>
+                     <br/> 
+
+                     
+                     <div class="form-group col-xs-12 col-sm-12">
+                     <label>Date of Birth</label>
+                     <input class="sprint col-md-12 col-sm-12 col-xs-12" type="date" name="birthday">
+                     </div>
+                     <br/>
+                     
+                    <div class="form-group col-xs-12 col-sm-12">
+                    <label>Nationality</label>
+                    <select class="sprint col-md-12 col-sm-12 col-xs-12" name="nationality">
+                    <option>Irish</option>
+                    <option>non Irish</option>
+                    </select>
+                    </div>
+                    <br/> 
+                    </fieldset>
+                    <br/>
+                     
+                    <!-- Uncomment the following scripts if you convert your "Standard HTML5" project into a "Cordova" project. -->
+                     
+                    <fieldset class=" sprint3 col-md-12 col-sm-12 col-xs-11">
+                    <legend class="sprint4">Contact Details</legend>
+                    <div class="form-group col-xs-12 col-sm-12">
+                    <label>Phone</label>
+                    <input class="sprint col-md-12 col-sm-12 col-xs-12" type="tel" name="user_tel" placeholder='Enter phone number' size=30 maxlenght=16>
+                    </div>
+                    <br/> 
+                                       
+                    <div class="form-group col-xs-12 col-sm-12">
+                    <label>Email</label>
+                    <input class="sprint col-md-12 col-sm-12 col-xs-12" type="email" name="email" placeholder='Enter email address' size=30 maxlenght=25>
+                    </div>
+                    <br/>                                                                                     
+                    </fieldset>
+                    <br/>
+                    
+                    <!-- Uncomment the following scripts if you convert your "Standard HTML5" project into a "Cordova" project. -->
+                     
+                     <fieldset class=" sprint3 col-md-12 col-sm-12 col-xs-11">
+                    <legend class="sprint4">Tax Details</legend>
+                    <div class="form-group col-xs-12 col-sm-12">
+                                <label for="tax_year"> Tax Year</label>
+                                <select class="sprint col-md-12 col-sm-12 col-xs-12" name="tax_year" id="tax_year">
+                                          <option >2012</option>
+                                          <option >2013</option>
+                                          <option >2014</option>
+                                          <option >2015</option>
+                                 </select>
+                     </div>
+                     <br/>
+                     
+                     <div class="form-group col-xs-12 col-sm-12">
+                     <label for="filing_status">Filing Status</label>
+                                    <select class="sprint col-md-12 col-sm-12 col-xs-12" name="filing_status" id="filing_status">
+                                        <option>Single</option>
+                                        <option>Single Parent Family</option>
+                                        <option>Married Single Income</option>
+                                        <option>Married Couple/Civil Partners Two Income</option>                                        
+                                   </select>
+                      </div>
+                      <br/>
+                      
+                     
+                     <div class="form-group col-xs-12 col-sm-12 " >
+                     <label>Total Wages</label>
+                     <input class="sprint col-md-12 col-sm-12 col-xs-12" type='number' name='total_wages' placeholder='Enter total wages' size=30 maxlenght=25>
+                     </div>
+                     <br/>                    
+
+                     <div class="form-group col-xs-12 col-sm-12">
+                     <label>Total Tax Allowance</label>
+                     <input class="sprint col-md-12 col-sm-12 col-xs-12" type='number' name='total_tax_allowance' placeholder='Enter total tax allowance' size=30 maxlenght=25>
+                     </div>
+                     <br/>
+
+                     <div class="form-group col-xs-12 col-sm-12">                  
+                     <label>Tax Deductible Expenses</label>
+                     <input class="sprint col-md-12 col-sm-12 col-xs-12" type='number' name="tax_deduc_exp" placeholder="Enter tax deeductible expenses" size=30 maxlenght=25>
+                     </div>
+                     <br/>
+                     <div class="form-group col-xs-12 col-sm-12">
+                     <label>Number of Employers</label>
+                       <select class="sprint col-md-12 col-sm-12 col-xs-12" name="num_of_employers">
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                       </select>
+                     </div>
+                     <br/>
+
+
+                     <div class="form-group col-xs-12 col-sm-12">
+                  <button class="sprint7 col-md-12 col-sm-12 col-xs-12" name="hideme" onclick="showblock()">Click to supply details for second earner if married with two income</button>
+                  </div>
+                  <br/>
+
+                   <div class="hide col-md-12 col-sm-12 col-xs-12" id="secondearner">
+                           
+                   <fieldset class="sprint6 col-md-12 col-sm-12 col-xs-12">
+                   <legend class="sprint4">Second Earner</legend>
+
+                     <div class="form-group col-xs-12 col-sm-12 " >
+                     <label>Total Wages</label>
+                     <input class="sprint col-md-12 col-sm-12 col-xs-12" type='number' name='second_earner_wages' placeholder='Enter wages for second earner' size=30 maxlenght=25>
+                     </div>
+                     <br/>
+
+
+                     <div class="form-group col-xs-12 col-sm-12">
+                     <label>Total Tax Allowance</label>
+                     <input class="sprint col-md-12 col-sm-12 col-xs-12" type='number' name='second_tax_allowance' placeholder='Enter  tax allowance' size=30 maxlenght=25>
+                     </div>
+                     <br/>
+
+                     <div class="form-group col-xs-12 col-sm-12">                  
+                     <label>Tax Deductible Expenses</label>
+                     <input class="sprint col-md-12 col-sm-12 col-xs-12" type='number' name="tax_deduc_exp2" placeholder="Enter tax deeductible expenses" size=30 maxlenght=25>
+                     </div>
+                     <br/> 
+
+                     <div class="form-group col-xs-12 col-sm-12">
+                     <label>Number of Employers </label>
+                       <select class="sprint col-md-12 col-sm-12 col-xs-12" name="num_of_employers2">
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                       </select>
+                     </div>
+                     <br/>
+                     
+                    </fieldset>
+                     
+                   </div>
+                   <br/>      
+                              
+                     
+                     <div class="form-group col-xs-12 col-sm-12">
+                     <label>Total Tax Paid</label>
+                     <input class="sprint col-md-12 col-sm-12 col-xs-12" type='number' name='total_tax_paid' placeholder='Enter total tax paid' size=30 maxlenght=25>
+                     </div>
+                     <br/>
+                            
+
+                     
+                     <div class="form-group col-xs-12 col-sm-12">
+                     <label>Total USC Paid</label>
+                     <input class="sprint col-md-12 col-sm-12 col-xs-12" type='number' name="total_usc_paid" placeholder='Enter total USC paid' size=30 maxlenght=25>
+                     </div>
+                     <br/>
+
+                    
+                     <div class="form-group col-xs-12 col-sm-12">
+                     <label>Total Prsi Paid</label>
+                     <input class="sprint col-md-12 col-sm-12 col-xs-12" type='number' name="total_prsi_paid" placeholder='Enter total Prsi paid' size=30 maxlenght=25>
+                     </div>
+                     <br/>
+                               
+                     
+                     
+                     </fieldset>
+                     <br/>
+                     
+                     <!-- Uncomment the following scripts if you convert your "Standard HTML5" project into a "Cordova" project. -->
+                     
+                      <fieldset class=" sprint3 col-md-12 col-sm-12 col-xs-11">
+                     <legend class="sprint4">Expenses Details</legend>
+                      <div class="form-group  col-sm-12 col-xs-12">
+                      <label>Did you have a medical card in the Year ?</label><br/>
+                      <div class="radio-inline">
+                      <input class="radio-inline"  type='radio' name='med_card[]' id="med_card_yes" value="Yes">Yes
+                      </div>
+                      <div class="radio-inline">
+                      <input class="radio-inline " type='radio' name='med_card[]' id="med_card_no" value="No">No
+                      </div>
+                      </div>
+                      <br/>
+                            
+                      <div class="form-group col-xs-12 col-sm-12">
+                      <label>Deductible Medical Expenses</label>      
+                      <input class="sprint col-md-12 col-sm-12 col-xs-12" type='number' name="deduc_med_exp" placeholder="Enter medical expenses" size=30>
+                      </div>
+                      <br/> 
+    
+                     
+                     <div class="form-group col-xs-12 col-sm-12">
+                     <label>Rent Paid</label>
+                     <input class="sprint col-md-12 col-sm-12 col-xs-12" type='number' name="rent_paid" placeholder='Enter rent' size=30 maxlenght=25>
+                     </div>
+                     <br/>
+                     
+                    
+                     <div class="form-group col-xs-12 col-sm-12">
+                     <label>Have you been renting before 7/12/2010 ?</label><br/>
+                     <div class="radio-inline">
+                     <input type='radio' name='rent_before[]' id="rent_yes" value="Yes">Yes
+                     </div>
+                     <div class="radio-inline">
+                     <input type='radio' name='rent_before[]'  id="rent_no" value="No">No
+                     </div>
+                     </div>
+                     <br/>     
+                     
+                     
+                     <div class="form-group col-xs-12 col-sm-12">
+                     <label>Total Tuition Fees Paid</label>
+                     <input class="sprint col-md-12 col-sm-12 col-xs-12" type='number' name='tuition_fees_paid' placeholder='Enter tuition fees' size=30 maxlenght=25>
+                     </div>
+                     <br/>
+                                  
+                     <div class="form-group col-xs-12 col-sm-12">
+                                <label for="type_of_student">Type of Student</label>
+                                <select class="sprint col-md-12 col-sm-12 col-xs-12" name="type_of_student" id="type_of_student">
+                                          <option >Full-Time</option>
+                                          <option >Part-Time</option>                                                                          
+                                </select>
+                     </div>
+                     <br/>
+                     
+                     <div class="form-group col-xs-12 col-sm-12">
+                                <label for="school_year">School Year</label>
+                                <select class="sprint col-md-12 col-sm-12 col-xs-12" name="school_year" id="school_year">
+                                          <option >2012</option>
+                                          <option >2013</option>
+                                          <option >2014</option>
+                                          <option >2015</option>
+                                 </select>
+                     </div>
+                     <br/>
+                     
+                     
+                     
+                     </fieldset>
+                     <br/>
+                     
+                     <!-- Uncomment the following scripts if you convert your "Standard HTML5" project into a "Cordova" project. -->
+
+                      
+                      <fieldset class=" sprint3 col-md-12 col-sm-12 col-xs-11">
+                     <legend class="sprint4">File Upload</legend>
+                      <div class="form-group col-xs-12 col-sm-12">   
+                    <label>Do you have a P60/P45 ?</label><br/>
+                    <div class="radio-inline">
+                    <input type='radio' name='form_p60_p45[]' value="Yes">Yes
+                    </div>
+                    <div class="radio-inline">
+                    <input type='radio' name='form_p60_p45[]' value="No">No
+                    </div>
+                    </div>
+                    <br/>
+
+                    
+                    <div class="form-group col-xs-12 col-sm-12">
+                    <label>Please upload Employers ID</label>
+                    <input class="sprint col-md-12 col-sm-12 col-xs-12" type="file" name="data_file[]" size="40" accept="image/*" capture >
+                    </div>
+                    <br/>
+
+                   
+                    <div class="form-group col-xs-12 col-sm-12">
+                    <label>Please upload Employers P60 or P45</label>
+                    <input class="sprint col-md-12 col-sm-12 col-xs-12" type="file" name="data_file[]" size="40" accept="image/*" capture >
+                    </div>
+                    <br/>
+                     
+                    <div class="form-group col-xs-12 col-sm-12">               
+                    <label>How did you hear about us ?</label>
+                      <select class="sprint col-md-12 col-sm-12 col-xs-12" name="hear_about" >
+                         <option>Choose an option..</option>
+                         <option>You Contacted Me</option>
+                         <option>Search Engine</option>
+                         <option>Social Network</option>
+                         <option>Friend Referal</option>
+                         <option>Event</option>
+                         <option>Other</option>
+                    </select>
+                    </div>
+                    <br/>
+
+     
+                     </fieldset>
+                     <br/>
+                      
+                      <!-- Uncomment the following scripts if you convert your "Standard HTML5" project into a "Cordova" project. -->
+
+                      
+                    <fieldset class=" sprint3 col-md-12 col-sm-12 col-xs-11">
+                    <legend class="sprint4">Tax Refund Details</legend>
+                      <div class="form-group col-xs-12 col-sm-12">
+                   <input class="sprint1 col-md-12 col-sm-12 col-xs-12" type="reset" placeholder="Reset" onclick="changeClass()">
+                   </div>
+                             
+                  <div class="form-group col-xs-12 col-sm-12">
+                  <button class="sprint1 col-md-12 col-sm-12 col-xs-12" name="calc" onclick="computeRefund()">Caculate</button>
+                  </div>
+                  <br/>
+
+                   <div class="hide" id="results">
+                           
+                           
+                           <div class="form-group col-xs-12 col-sm-12">
+                           <label>Calculated Paye Tax</label>
+                           <input class="sprint col-md-12 col-sm-12 col-xs-12" id="payetax" name='paye_tax' readonly>
+                           </div>
+                           <br/>  
+                         
+                           <div class="form-group col-xs-12 col-sm-12">
+                           <label>Calculated USC</label>
+                           <input class="sprint col-md-12 col-sm-12 col-xs-12" id="calusc" name='cal_usc' readonly>
+                           </div>             
+                           <br/>
+
+                           <div class="form-group col-xs-12 col-sm-12">
+                           <label>Calculated Prsi</label>
+                           <input class="sprint col-md-12 col-sm-12 col-xs-12" id="calprsi" name='cal_prsi' readonly>
+                           </div>
+                           <br/>
+
+                           <div class="form-group col-xs-12 col-sm-12">
+                          <label>Total Tax Refund</label>
+                           <input class="sprint col-md-12 col-sm-12 col-xs-12" id="refund" name='cal_refund' readonly>
+                           </div>
+                           <br/>
+ 
+                           <div class="form-group col-xs-12 col-sm-12">
+                           <label>Do you want us to apply for your tax refund?</label><br/> 
+                           <div class="radio-inline">
+                           <input type='radio' name='apply_for_refund[]' value="Yes">Yes
+                           </div>
+                           <div class="radio-inline">
+                           <input type='radio' name='apply_for_refund[]' value="No">No
+                           </div>
+                           </div>
+                           <br/>
+                           
+                           <div class="form-group col-xs-12 col-sm-12">
+                           <input class="sprint1 col-md-12 col-sm-12 col-xs-12" type="submit" placeholder="Submit">
+                           </div>
+
+                   </div>
+                   <br/>
+                     
+                      
+                     
+                     </fieldset>
+                     <br/>
+            
+            </form>
+
+        </div>
+
+      </div>
+   
+<script type="text/javascript" src="taxrefund.js"></script>
+
+</body>
+</html>
